@@ -5,6 +5,7 @@ var midContent = document.querySelector(".choices-result");
 var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
 var ulEl = document.createElement("ul");
+var questionCounter = 0;
 
 //timer variable
 var timeLeft = 0;
@@ -18,12 +19,14 @@ var questions = [
     "A very useful tool used during development and debugging fo printing content to the debugger is:" //question 4
 ];
 
-// put answer choices in an arry
-var choices0 = ["strings", "booleans", "alerts", "numbers"];
-var choices1 = ["quotes", "curl brackets", "parenthesis", "square brackets"];
-var choices2 = ["numbers and strings", "other arrays", "booleans", "all of the above"];
-var choices3 = ["commas", "curly brackets", "quotes", "parenthesis"];
-var choices4 = ["JavaScript", "terminal/bash", "for loops", "console.log"];
+// put answer choices in an object
+var choices = {
+    0: ["strings", "booleans", "alerts", "numbers"],
+    1: ["quotes", "curl brackets", "parenthesis", "square brackets"],
+    2: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+    3: ["commas", "curly brackets", "quotes", "parenthesis"],
+    4: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+};
 
 // function for the countdown
 function countDown() {
@@ -39,21 +42,39 @@ function countDown() {
     }, 1000);
 }
 
-startButton.addEventListener("click", function() {
-    countDown();
-    topContent.children[0].textContent = questions[0];
+function showQuesAnsw(questionCounter) {
+
+    //adds question to the top
+    topContent.children[0].textContent = questions[questionCounter];
+
+    //putting answer choices into ul element
     for (var i=0; i<choices0.length; i++) {
         var liEl = document.createElement("li");
         liEl.textContent = choices0[i];
+        liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0;");
+        liEl.setAttribute("class", "choice-button");
         ulEl.appendChild(liEl);
     };
-    midContent.children[0].textContent = "";
+    
+    //showing the answer choices
+    midContent.children[0].remove();
     midContent.appendChild(ulEl);
+};
+
+startButton.addEventListener("click", function() {
+    countDown();
+    showQuesAnsw(questionCounter);
+    // topContent.children[0].textContent = questions[0];
+    // for (var i=0; i<choices0.length; i++) {
+    //     var liEl = document.createElement("li");
+    //     liEl.textContent = choices0[i];
+    //     liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0;");
+    //     liEl.setAttribute("class", "choice-button");
+    //     ulEl.appendChild(liEl);
+    // };
+    // midContent.children[0].remove();
+    // midContent.appendChild(ulEl);
     startButton.remove();
-
-
-    // midContent.children[0].textContent = choices0[0];
-    // botContent.children[0].textContent = "";
 });
 
 
