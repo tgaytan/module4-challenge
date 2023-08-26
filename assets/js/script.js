@@ -5,7 +5,6 @@ var midContent = document.querySelector(".choices-result");
 var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
 var ulEl = document.createElement("ul");
-var questionCounter = 0;
 
 //timer variable
 var timeLeft = 0;
@@ -20,13 +19,20 @@ var questions = [
 ];
 
 // put answer choices in an object
-var choices = {
-    0: ["strings", "booleans", "alerts", "numbers"],
-    1: ["quotes", "curl brackets", "parenthesis", "square brackets"],
-    2: ["numbers and strings", "other arrays", "booleans", "all of the above"],
-    3: ["commas", "curly brackets", "quotes", "parenthesis"],
-    4: ["JavaScript", "terminal/bash", "for loops", "console.log"]
-};
+// var choices = {
+//     q0: ["strings", "booleans", "alerts", "numbers"],
+//     q1: ["quotes", "curl brackets", "parenthesis", "square brackets"],
+//     q2: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+//     q3: ["commas", "curly brackets", "quotes", "parenthesis"],
+//     q4: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+// };
+
+var choice0 = ["strings", "booleans", "alerts", "numbers"];
+var choice1 = ["quotes", "curl brackets", "parenthesis", "square brackets"];
+var choice2 = ["numbers and strings", "other arrays", "booleans", "all of the above"];
+var choice3 = ["commas", "curly brackets", "quotes", "parenthesis"];
+var choice4 = ["JavaScript", "terminal/bash", "for loops", "console.log"];
+
 
 // function for the countdown
 function countDown() {
@@ -47,22 +53,39 @@ function showQuesAnsw(questionCounter) {
     //adds question to the top
     topContent.children[0].textContent = questions[questionCounter];
 
+    if (questionCounter === 0) {
+        var choices = choice0;
+    } else if (questionCounter === 1) {
+        var choices = choice1;
+    } else if (questionCounter === 2) {
+        var choices = choice2;
+    } else if (questionCounter === 3) {
+        var choices = choice3;
+    } else {
+        var choices = choice4;
+    }
+
     //putting answer choices into ul element
-    for (var i=0; i<choices0.length; i++) {
+
+    for (var i=0; i<choices.length; i++) {
         var liEl = document.createElement("li");
-        liEl.textContent = choices0[i];
+        liEl.textContent = choices[i];
         liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0;");
         liEl.setAttribute("class", "choice-button");
         ulEl.appendChild(liEl);
-    };
+    }
+
     
     //showing the answer choices
     midContent.children[0].remove();
     midContent.appendChild(ulEl);
+
+    questionCounter++;
 };
 
 startButton.addEventListener("click", function() {
     countDown();
+    var questionCounter = 0;
     showQuesAnsw(questionCounter);
     // topContent.children[0].textContent = questions[0];
     // for (var i=0; i<choices0.length; i++) {
