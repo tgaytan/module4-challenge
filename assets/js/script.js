@@ -4,6 +4,7 @@ var topContent = document.querySelector(".title-question");
 var midContent = document.querySelector(".choices-result");
 var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
+var ulEl = document.createElement("ul");
 
 //timer variable
 var timeLeft = 0;
@@ -32,6 +33,7 @@ function countDown() {
         timeLeft--;
 
         if (timeLeft === 0) {
+            timer.textContent = "Time: " + timeLeft;
             clearInterval(decreaseTime);
         };
     }, 1000);
@@ -39,4 +41,19 @@ function countDown() {
 
 startButton.addEventListener("click", function() {
     countDown();
+    topContent.children[0].textContent = questions[0];
+    for (var i=0; i<choices0.length; i++) {
+        var liEl = document.createElement("li");
+        liEl.textContent = choices0[i];
+        ulEl.appendChild(liEl);
+    };
+    midContent.children[0].textContent = "";
+    midContent.appendChild(ulEl);
+    startButton.remove();
+
+
+    // midContent.children[0].textContent = choices0[0];
+    // botContent.children[0].textContent = "";
 });
+
+
