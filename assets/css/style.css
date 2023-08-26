@@ -1,0 +1,27 @@
+* {
+    border: 1px solid black;
+    
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.view-high-scores, .timer {
+    margin: 15px 15px;
+}
+
+main {
+    margin-top: 80px;
+}
+
+.title-question {
+    text-align: center;
+    font-size: 25px; 
+    margin-bottom: 10px;
+}
+
+.choices {
+    text-align: center;
+}
