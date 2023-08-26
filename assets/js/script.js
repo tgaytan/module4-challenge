@@ -1,8 +1,12 @@
-// put button element in variable
-var button = document.querySelector(".start-button");
+// put elements in variable
+var startButton = document.querySelector(".start-button");
 var topContent = document.querySelector(".title-question");
 var midContent = document.querySelector(".choices-result");
 var botContent = document.querySelector(".extra-info");
+var timer = document.querySelector(".timer");
+
+//timer variable
+var timeLeft = 0;
 
 // put questions in an arry
 var questions = [
@@ -20,6 +24,19 @@ var choices2 = ["numbers and strings", "other arrays", "booleans", "all of the a
 var choices3 = ["commas", "curly brackets", "quotes", "parenthesis"];
 var choices4 = ["JavaScript", "terminal/bash", "for loops", "console.log"];
 
+// function for the countdown
+function countDown() {
+    timeLeft = 75;
+    var decreaseTime = setInterval(function() {
+        timer.textContent = "Time: " + timeLeft;
+        timeLeft--;
 
-button.addEventListener("click", function() {
+        if (timeLeft === 0) {
+            clearInterval(decreaseTime);
+        };
+    }, 1000);
+}
+
+startButton.addEventListener("click", function() {
+    countDown();
 });
