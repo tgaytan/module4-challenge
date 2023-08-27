@@ -22,7 +22,6 @@ var answer1 = choice1El;
 var answer2 = choice2El;
 var answer3 = choice3El;
 
-
 // create button elements and store in variable
 var submitButton = document.createElement("button");
 var goBackButton = document.createElement("button");
@@ -175,12 +174,13 @@ function showHighScores() {
     midContent.children[0].textContent = "";
     midContent.appendChild(olScoreEl);
 
-    for (var x=0; x < firstLast.length; x++) { 
-        var liScoreEl = document.createElement("li");
-        liScoreEl.textContent = x + 1 + ". " + firstLast[x] + " - " + displayScore[x];
-        liScoreEl.setAttribute("style", "text-align:left; margin:5px 0;");
-        olScoreEl.appendChild(liScoreEl);
-    };
+     for (var x=0; x < firstLast.length; x++) { 
+         var liScoreEl = document.createElement("li");
+         liScoreEl.textContent = x + 1 + ". " + firstLast[x] + " - " + displayScore[x];
+         liScoreEl.setAttribute("style", "text-align:left; margin:5px 0;");
+         olScoreEl.appendChild(liScoreEl);
+     };
+
     labelEl.remove();
     inputEl.remove();
     submitButton.remove();
@@ -189,12 +189,12 @@ function showHighScores() {
     botContent.appendChild(clearHighScoresButton);
     
 
-
 }
 
 function resetPage() {
     topContent.children[0].textContent = "Coding Quiz Challenge";
     midContent.children[0].textContent = "Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
+    olScoreEl.innerHTML = "";
     olScoreEl.remove();
     goBackButton.remove();
     clearHighScoresButton.remove();
