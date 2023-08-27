@@ -31,7 +31,7 @@ var pickedAnswer2 = "";
 var pickedAnswer3 = "";
 
 // putting the actual choice into a variable. only creating variable for now
-var pickedAnswer;
+var pickedAnswer = "startQuiz";
 
 // create button elements and store in variable
 var submitButton = document.createElement("button");
@@ -122,8 +122,12 @@ function countDown() {
 // function that is responsible of displaying the question, along with its answer choices
 function showQuesAnsw() {
 
-    //taking off points if picked answer is wrong
-    if (pickedAnswer !== answerKey[questionCounter-1]) {
+    // taking off points if picked answer is wrong
+    if (pickedAnswer === "startQuiz") {
+        // do nothing
+    } else if (pickedAnswer !== answerKey[questionCounter-1]) {
+
+        botContent.textContent = "Incorrect";
 
         if (timeLeft <= 10) {
             timeLeft = 0;
@@ -134,6 +138,8 @@ function showQuesAnsw() {
             timeLeft =  timeLeft - 10;
             timer.textContent = "Time: " + timeLeft;
         }
+    } else {
+        botContent.textContent = "Correct";
     }
 
     //this code block will occur after the user has answered the final question
