@@ -222,3 +222,7 @@ answer3.addEventListener("click", showQuesAnsw);
 submitButton.addEventListener("click", showHighScores);
 
 goBackButton.addEventListener("click", resetPage);
+clearHighScoresButton.addEventListener("click", function() {
+    highScores = {};
+    olScoreEl.innerHTML = "";
+});
