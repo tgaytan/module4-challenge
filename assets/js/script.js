@@ -6,6 +6,13 @@ var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
 var ulEl = document.createElement("ul");
 
+var answer0 = document.getElementById("choice0");
+var answer1 = document.getElementById("choice1");
+var answer2 = document.getElementById("choice2");
+var answer3 = document.getElementById("choice3");
+
+var questionCounter = 0;
+
 //timer variable
 var timeLeft = 0;
 
@@ -18,7 +25,6 @@ var questions = [
     "A very useful tool used during development and debugging fo printing content to the debugger is:" //question 4
 ];
 
-// put answer choices in an object
 // var choices = {
 //     q0: ["strings", "booleans", "alerts", "numbers"],
 //     q1: ["quotes", "curl brackets", "parenthesis", "square brackets"],
@@ -27,6 +33,7 @@ var questions = [
 //     q4: ["JavaScript", "terminal/bash", "for loops", "console.log"]
 // };
 
+// put answer choices in an array
 var choice0 = ["strings", "booleans", "alerts", "numbers"];
 var choice1 = ["quotes", "curl brackets", "parenthesis", "square brackets"];
 var choice2 = ["numbers and strings", "other arrays", "booleans", "all of the above"];
@@ -48,7 +55,7 @@ function countDown() {
     }, 1000);
 }
 
-function showQuesAnsw(questionCounter) {
+function showQuesAnsw() {
 
     //adds question to the top
     topContent.children[0].textContent = questions[questionCounter];
@@ -65,39 +72,31 @@ function showQuesAnsw(questionCounter) {
         var choices = choice4;
     }
 
+
     //putting answer choices into ul element
 
     for (var i=0; i<choices.length; i++) {
-        var liEl = document.createElement("li");
+        var liEl = document.getElementById("choice" + i);
         liEl.textContent = choices[i];
-        liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0;");
-        liEl.setAttribute("class", "choice-button");
-        ulEl.appendChild(liEl);
+        liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0; display:block");
     }
-
     
     //showing the answer choices
-    midContent.children[0].remove();
-    midContent.appendChild(ulEl);
+    // midContent.children[0].remove();
 
     questionCounter++;
 };
 
 startButton.addEventListener("click", function() {
     countDown();
-    var questionCounter = 0;
-    showQuesAnsw(questionCounter);
-    // topContent.children[0].textContent = questions[0];
-    // for (var i=0; i<choices0.length; i++) {
-    //     var liEl = document.createElement("li");
-    //     liEl.textContent = choices0[i];
-    //     liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0;");
-    //     liEl.setAttribute("class", "choice-button");
-    //     ulEl.appendChild(liEl);
-    // };
-    // midContent.children[0].remove();
-    // midContent.appendChild(ulEl);
     startButton.remove();
+    document.getElementById("intro").textContent = "";
+    questionCounter = 0;
+    showQuesAnsw();
 });
 
+answer0.addEventListener("click", showQuesAnsw);
+answer1.addEventListener("click", showQuesAnsw);
+answer2.addEventListener("click", showQuesAnsw);
+answer3.addEventListener("click", showQuesAnsw);
 
