@@ -146,6 +146,7 @@ function showHighScores() {
     highScores[inputEl.value] = timeLeft;
     var firstLast = Object.keys(highScores);
     var displayScore = Object.values(highScores);
+    midContent.children[0].textContent = "";
     midContent.appendChild(olScoreEl);
 
     for (var x=0; x < firstLast.length; x++) { 
@@ -165,7 +166,14 @@ function showHighScores() {
 
 }
 
-
+function resetPage() {
+    topContent.children[0].textContent = "Coding Quiz Challenge";
+    midContent.children[0].textContent = "Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
+    olScoreEl.remove();
+    goBackButton.remove();
+    clearHighScoresButton.remove();
+    botContent.appendChild(startButton);
+}
 
 // makes the start button interactive and starts timer and displays the first question
 startButton.addEventListener("click", function() {
@@ -184,3 +192,5 @@ answer3.addEventListener("click", showQuesAnsw);
 
 // will save the initials to high score
 submitButton.addEventListener("click", showHighScores);
+
+goBackButton.addEventListener("click", resetPage);
