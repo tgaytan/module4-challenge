@@ -4,12 +4,24 @@ var topContent = document.querySelector(".title-question");
 var midContent = document.querySelector(".choices-result");
 var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
-var ulEl = document.querySelector("ul");
 
-var answer0 = document.getElementById("choice0");
-var answer1 = document.getElementById("choice1");
-var answer2 = document.getElementById("choice2");
-var answer3 = document.getElementById("choice3");
+//creating li elements for the questions
+// var ulChoicesEl = document.createElement("ul"); 
+var choice0El = document.createElement("li");
+var choice1El = document.createElement("li");
+var choice2El = document.createElement("li");
+var choice3El = document.createElement("li");
+
+choice0El.setAttribute("id", "choice0");
+choice1El.setAttribute("id", "choice1");
+choice2El.setAttribute("id", "choice2");
+choice3El.setAttribute("id", "choice3");
+
+var answer0 = choice0El;
+var answer1 = choice1El;
+var answer2 = choice2El;
+var answer3 = choice3El;
+
 
 // create button elements and store in variable
 var submitButton = document.createElement("button");
@@ -38,8 +50,9 @@ inputEl.setAttribute("type", "text");
 inputEl.setAttribute("id", "initials");
 inputEl.setAttribute("name", "name");
 
-// creating ol element to be used when displying high scores
+// creating ol and ul element to be used when displying high scores or answer choices
 var olScoreEl = document.createElement("ol")
+var ulQuesEl = document.createElement("ul");
 
 // object that stores high scores
 var highScores = {};
@@ -120,9 +133,22 @@ function showQuesAnsw() {
 
     // putting answer choices into li element and displaying it
     for (var i=0; i<choices.length; i++) {
-        var liEl = document.getElementById("choice" + i);
+        // var liEl = document.createElement("li");
+
+        if (i === 0) {
+            var liEl = choice0El;
+        } else if (i ===1) {
+            var liEl = choice1El;
+        } else if (i ===2) {
+            var liEl = choice2El;
+        } else if (i ===3) {
+            var liEl = choice3El;
+        }
+
         liEl.textContent = choices[i];
         liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0; display:block");
+        // liEl.setAttribute("id", "choice" + i);
+        ulQuesEl.appendChild(liEl);
     }
 
     // increase counter so when function is executed again, the next question will display
@@ -133,7 +159,7 @@ function showQuesAnsw() {
 function showResults() {
     topContent.children[0].textContent = "All done!";
     midContent.children[0].textContent = "Your final score is " + timeLeft;
-    ulEl.remove();
+    ulQuesEl.remove();
     midContent.appendChild(labelEl);
     midContent.appendChild(inputEl);
     midContent.appendChild(submitButton);
@@ -178,6 +204,7 @@ function resetPage() {
 // makes the start button interactive and starts timer and displays the first question
 startButton.addEventListener("click", function() {
     countDown();
+    midContent.appendChild(ulQuesEl);
     startButton.remove();
     midContent.children[0].textContent = "";
     questionCounter = 0;
