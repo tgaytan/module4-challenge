@@ -18,10 +18,20 @@ choice1El.setAttribute("id", "choice1");
 choice2El.setAttribute("id", "choice2");
 choice3El.setAttribute("id", "choice3");
 
+// declaring variables so that way the eventListener can find this object
 var answer0 = choice0El;
 var answer1 = choice1El;
 var answer2 = choice2El;
 var answer3 = choice3El;
+
+// saving answer choices in varaibles before clicking on a choice
+var pickedAnswer0 = "";
+var pickedAnswer1 = "";
+var pickedAnswer2 = "";
+var pickedAnswer3 = "";
+
+// putting the actual choice into a variable. only creating variable for now
+var pickedAnswer;
 
 // create button elements and store in variable
 var submitButton = document.createElement("button");
@@ -82,33 +92,49 @@ var choice2 = ["numbers and strings", "other arrays", "booleans", "all of the ab
 var choice3 = ["commas", "curly brackets", "quotes", "parenthesis"];
 var choice4 = ["JavaScript", "terminal/bash", "for loops", "console.log"];
 
+// creating answer key
+var answerKey = ["alerts", "parenthesis", "all of the above", "quotes", "console.log"];
 
 // function for the countdown
 function countDown() {
-    timeLeft = 75; 
+    timeLeft = 15; 
     var decreaseTime = setInterval(function() {
 
         if (stopTimer) {
             timer.textContent = "Time: " + timeLeft;
             clearInterval(decreaseTime);
+            return;
         };
-
-        timeLeft--; //doing the subtract first since code seems to start a second late
-        timer.textContent = "Time: " + timeLeft;
-        
 
         if (timeLeft === 0) {
             timer.textContent = "Time: " + timeLeft;
             showResults();
             clearInterval(decreaseTime);
+            return;
         };
 
-        
+        timeLeft--; //doing the subtract first since code seems to start a second late
+        timer.textContent = "Time: " + timeLeft;
+
     }, 1000);
 }
 
 // function that is responsible of displaying the question, along with its answer choices
 function showQuesAnsw() {
+
+    //taking off points if picked answer is wrong
+    if (pickedAnswer !== answerKey[questionCounter-1]) {
+
+        if (timeLeft <= 10) {
+            timeLeft = 0;
+            timer.textContent = "Time: " + timeLeft;
+            showResults();
+            return;
+        } else {
+            timeLeft =  timeLeft - 10;
+            timer.textContent = "Time: " + timeLeft;
+        }
+    }
 
     //this code block will occur after the user has answered the final question
     if (questionCounter === 5) {
@@ -152,6 +178,11 @@ function showQuesAnsw() {
         // liEl.setAttribute("id", "choice" + i);
         ulQuesEl.appendChild(liEl);
     }
+
+    pickedAnswer0 = answer0.textContent;
+    pickedAnswer1 = answer1.textContent;
+    pickedAnswer2 = answer2.textContent;
+    pickedAnswer3 = answer3.textContent;
 
     // increase counter so when function is executed again, the next question will display
     questionCounter++;
@@ -219,10 +250,25 @@ startButton.addEventListener("click", function() {
 });
 
 // makes each answer choice interactive
-answer0.addEventListener("click", showQuesAnsw);
-answer1.addEventListener("click", showQuesAnsw);
-answer2.addEventListener("click", showQuesAnsw);
-answer3.addEventListener("click", showQuesAnsw);
+answer0.addEventListener("click", function() {
+    pickedAnswer = pickedAnswer0;
+    showQuesAnsw();
+});
+
+answer1.addEventListener("click", function() {
+    pickedAnswer = pickedAnswer1;
+    showQuesAnsw();
+});
+
+answer2.addEventListener("click", function() {
+    pickedAnswer = pickedAnswer2;
+    showQuesAnsw();
+});
+
+answer3.addEventListener("click", function() {
+    pickedAnswer = pickedAnswer3;
+    showQuesAnsw();
+});
 
 // will save the initials to high score
 submitButton.addEventListener("click", showHighScores);
