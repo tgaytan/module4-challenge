@@ -203,6 +203,7 @@ function resetPage() {
 
 // makes the start button interactive and starts timer and displays the first question
 startButton.addEventListener("click", function() {
+    stopTimer = false;
     countDown();
     midContent.appendChild(ulQuesEl);
     startButton.remove();
