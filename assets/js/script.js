@@ -85,7 +85,7 @@ var choice4 = ["JavaScript", "terminal/bash", "for loops", "console.log"];
 
 // function for the countdown
 function countDown() {
-    timeLeft = 75;
+    timeLeft = 75; 
     var decreaseTime = setInterval(function() {
 
         if (stopTimer) {
@@ -93,11 +93,13 @@ function countDown() {
             clearInterval(decreaseTime);
         };
 
+        timeLeft--; //doing the subtract first since code seems to start a second late
         timer.textContent = "Time: " + timeLeft;
-        timeLeft--;
+        
 
         if (timeLeft === 0) {
             timer.textContent = "Time: " + timeLeft;
+            showResults();
             clearInterval(decreaseTime);
         };
 
@@ -195,7 +197,7 @@ function showHighScores() {
 
 function resetPage() {
     headerEl.removeAttribute("style");
-
+    timer.textContent = "Time: 75";
     topContent.children[0].textContent = "Coding Quiz Challenge";
     midContent.children[0].textContent = "Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
     olScoreEl.innerHTML = "";
