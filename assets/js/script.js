@@ -145,6 +145,7 @@ function showQuesAnsw() {
     //this code block will occur after the user has answered the final question
     if (questionCounter === 5) {
         stopTimer = true;
+        botContent.textContent = "";
         showResults();
         return;
     }
@@ -247,6 +248,7 @@ function resetPage() {
 // makes the start button interactive and starts timer and displays the first question
 startButton.addEventListener("click", function() {
     stopTimer = false;
+    pickedAnswer = "startQuiz";
     countDown();
     midContent.appendChild(ulQuesEl);
     startButton.remove();
