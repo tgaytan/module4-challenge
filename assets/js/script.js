@@ -7,7 +7,6 @@ var timer = document.querySelector(".timer");
 var headerEl = document.querySelector("header");
 
 //creating li elements for the questions
-// var ulChoicesEl = document.createElement("ul"); 
 var choice0El = document.createElement("li");
 var choice1El = document.createElement("li");
 var choice2El = document.createElement("li");
@@ -29,6 +28,9 @@ var pickedAnswer0 = "";
 var pickedAnswer1 = "";
 var pickedAnswer2 = "";
 var pickedAnswer3 = "";
+
+// variable that is called when "View High Scores" is picked. prevents score from being logged
+var viewHighScores = false;
 
 // putting the actual choice into a variable. only creating variable for now
 var pickedAnswer = "startQuiz";
@@ -123,6 +125,7 @@ function countDown() {
 function showQuesAnsw() {
 
     // taking off points if picked answer is wrong
+    botContent.setAttribute("style", "color:#a4a4a7; text-align:left; display:block; padding:15px 32px;");
     if (pickedAnswer === "startQuiz") {
         // do nothing
     } else if (pickedAnswer !== answerKey[questionCounter-1]) {
@@ -145,7 +148,7 @@ function showQuesAnsw() {
     //this code block will occur after the user has answered the final question
     if (questionCounter === 5) {
         stopTimer = true;
-        botContent.textContent = "";
+        // botContent.textContent = "";
         showResults();
         return;
     }
@@ -181,7 +184,8 @@ function showQuesAnsw() {
         }
 
         liEl.textContent = choices[i];
-        liEl.setAttribute("style", "cursor:pointer; text-align:left; margin:5px 0; display:block");
+        liEl.setAttribute("style", 
+            "cursor:pointer; text-align:left; display:block; background-color:#5d0aa2; color:white; border-radius:10px; padding:15px 32px; font-size:16px; margin:10px 10px");
         // liEl.setAttribute("id", "choice" + i);
         ulQuesEl.appendChild(liEl);
     }
@@ -210,7 +214,9 @@ function showHighScores() {
     headerEl.setAttribute("style", "display:none;");
     topContent.children[0].textContent = "High Scores";
 
-    highScores[inputEl.value] = timeLeft;
+    if (!viewHighScores) {
+        highScores[inputEl.value] = timeLeft;
+    }
     var firstLast = Object.keys(highScores);
     var displayScore = Object.values(highScores);
     midContent.children[0].textContent = "";
@@ -227,10 +233,10 @@ function showHighScores() {
     inputEl.remove();
     submitButton.remove();
 
+    botContent.textContent = "";
     botContent.appendChild(goBackButton);
     botContent.appendChild(clearHighScoresButton);
-    
-
+    viewHighScores = false;
 }
 
 function resetPage() {
@@ -285,4 +291,11 @@ goBackButton.addEventListener("click", resetPage);
 clearHighScoresButton.addEventListener("click", function() {
     highScores = {};
     olScoreEl.innerHTML = "";
+});
+
+headerEl.children[0].addEventListener("click", function() {
+    viewHighScores = true;
+    showHighScores();
+    startButton.remove();
+    ulQuesEl.remove();
 });

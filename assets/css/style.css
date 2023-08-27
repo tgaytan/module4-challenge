@@ -2,13 +2,16 @@
     border: 1px solid black;
 } */
 
+
+
 header {
     display: flex;
     justify-content: space-between;
 }
 
 .view-high-scores {
-    color: #b64fe9
+    color: #b64fe9;
+    cursor: pointer;
 }
 
 .view-high-scores, .timer {
@@ -32,10 +35,11 @@ main section {
 /* copied from w3schools.com/css/css3_buttons.asp */
 button {
     background-color: #5d0aa2;
-    border: none;
     color: white;
     padding: 15px 32px;
     font-size: 16px;
-    margin: 0 10px;
+    margin: 5px 10px;
+    border-radius: 10px;
 }
+
 
