@@ -97,7 +97,7 @@ var answerKey = ["alerts", "parenthesis", "all of the above", "quotes", "console
 
 // function for the countdown
 function countDown() {
-    timeLeft = 15; 
+    timeLeft = 75; 
     var decreaseTime = setInterval(function() {
 
         if (stopTimer) {
