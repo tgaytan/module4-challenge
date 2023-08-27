@@ -4,13 +4,23 @@ var topContent = document.querySelector(".title-question");
 var midContent = document.querySelector(".choices-result");
 var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
-var ulEl = document.createElement("ul");
+var ulEl = document.querySelector("ul");
+
+// creating variables for results page
+var labelEl = document.createElement("lable");
+var inputEl = document.createElement("input");
+labelEl.setAttribute("for", "initials");
+labelEl.textContent = "Enter initials: ";
+inputEl.setAttribute("type", "text");
+inputEl.setAttribute("id", "initials");
+inputEl.setAttribute("name", "name");
 
 var answer0 = document.getElementById("choice0");
 var answer1 = document.getElementById("choice1");
 var answer2 = document.getElementById("choice2");
 var answer3 = document.getElementById("choice3");
 
+//determines which question and answer choices to display
 var questionCounter = 0;
 
 //timer variable
@@ -22,7 +32,7 @@ var questions = [
     "The condition in an if/else statement is enclosed with _______.", //question 1
     "Arrays in JavaScript can be used to store _______.", //question 2
     "String values must be enclosed within _______ when being assigned to variables.", //question 3
-    "A very useful tool used during development and debugging fo printing content to the debugger is:" //question 4
+    "A very useful tool used during development and debugging for printing content to the debugger is:" //question 4
 ];
 
 // var choices = {
@@ -57,9 +67,16 @@ function countDown() {
 
 function showQuesAnsw() {
 
+    //this code block will occur once the user has answered the final question
+    if (questionCounter === 5) {
+        showResults();
+        return;
+    }
+
     //adds question to the top
     topContent.children[0].textContent = questions[questionCounter];
 
+    //determines which array of answers choices to use, depending on the questionCounter
     if (questionCounter === 0) {
         var choices = choice0;
     } else if (questionCounter === 1) {
@@ -71,7 +88,6 @@ function showQuesAnsw() {
     } else {
         var choices = choice4;
     }
-
 
     //putting answer choices into ul element
 
@@ -85,12 +101,22 @@ function showQuesAnsw() {
     // midContent.children[0].remove();
 
     questionCounter++;
-};
+}
+
+function showResults() {
+    topContent.children[0].textContent = "All done!";
+    midContent.children[0].textContent = "Your final score is " + timeLeft;
+    ulEl.remove();
+    midContent.appendChild(labelEl);
+    midContent.appendChild(inputEl);
+    startButton.textContent = "Submit";
+    midContent.appendChild(startButton);
+}
 
 startButton.addEventListener("click", function() {
     countDown();
     startButton.remove();
-    document.getElementById("intro").textContent = "";
+    midContent.children[0].textContent = "";
     questionCounter = 0;
     showQuesAnsw();
 });
