@@ -4,6 +4,7 @@ var topContent = document.querySelector(".title-question");
 var midContent = document.querySelector(".choices-result");
 var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
+var headerEl = document.querySelector("header");
 
 //creating li elements for the questions
 // var ulChoicesEl = document.createElement("ul"); 
@@ -166,6 +167,7 @@ function showResults() {
 
 // function that shows the page where the high scores are shown
 function showHighScores() {
+    headerEl.setAttribute("style", "display:none;");
     topContent.children[0].textContent = "High Scores";
 
     highScores[inputEl.value] = timeLeft;
@@ -192,6 +194,8 @@ function showHighScores() {
 }
 
 function resetPage() {
+    headerEl.removeAttribute("style");
+
     topContent.children[0].textContent = "Coding Quiz Challenge";
     midContent.children[0].textContent = "Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
     olScoreEl.innerHTML = "";
