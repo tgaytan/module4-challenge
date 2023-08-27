@@ -38,8 +38,14 @@ inputEl.setAttribute("type", "text");
 inputEl.setAttribute("id", "initials");
 inputEl.setAttribute("name", "name");
 
+// creating ol element to be used when displying high scores
+var olScoreEl = document.createElement("ol")
+
 // object that stores high scores
 var highScores = {};
+
+// variable that stops the timer if set to true
+var stopTimer = false;
 
 //determines which question and answer choices to display. 0 is for first question
 var questionCounter = 0;
@@ -68,6 +74,12 @@ var choice4 = ["JavaScript", "terminal/bash", "for loops", "console.log"];
 function countDown() {
     timeLeft = 75;
     var decreaseTime = setInterval(function() {
+
+        if (stopTimer) {
+            timer.textContent = "Time: " + timeLeft;
+            clearInterval(decreaseTime);
+        };
+
         timer.textContent = "Time: " + timeLeft;
         timeLeft--;
 
@@ -75,6 +87,8 @@ function countDown() {
             timer.textContent = "Time: " + timeLeft;
             clearInterval(decreaseTime);
         };
+
+        
     }, 1000);
 }
 
@@ -83,6 +97,7 @@ function showQuesAnsw() {
 
     //this code block will occur after the user has answered the final question
     if (questionCounter === 5) {
+        stopTimer = true;
         showResults();
         return;
     }
@@ -127,9 +142,25 @@ function showResults() {
 // function that shows the page where the high scores are shown
 function showHighScores() {
     topContent.children[0].textContent = "High Scores";
+
+    highScores[inputEl.value] = timeLeft;
+    var firstLast = Object.keys(highScores);
+    var displayScore = Object.values(highScores);
+    midContent.appendChild(olScoreEl);
+
+    for (var x=0; x < firstLast.length; x++) { 
+        var liScoreEl = document.createElement("li");
+        liScoreEl.textContent = x + 1 + ". " + firstLast[x] + " - " + displayScore[x];
+        liScoreEl.setAttribute("style", "text-align:left; margin:5px 0;");
+        olScoreEl.appendChild(liScoreEl);
+    };
+    labelEl.remove();
+    inputEl.remove();
+    submitButton.remove();
+
     botContent.appendChild(goBackButton);
     botContent.appendChild(clearHighScoresButton);
-    highScores[inputEl.value] = timeLeft;
+    
 
 
 }
