@@ -6,6 +6,23 @@ var botContent = document.querySelector(".extra-info");
 var timer = document.querySelector(".timer");
 var ulEl = document.querySelector("ul");
 
+// create button elements and store in variable
+var submitButton = document.createElement("button");
+var goBackButton = document.createElement("button");
+var clearHighScoresButton = document.createElement("button");
+
+submitButton.setAttribute("id", "submit");
+goBackButton.setAttribute("id", "go-back");
+clearHighScoresButton.setAttribute("id", "clear-scores");
+
+submitButton.setAttribute("type", "button");
+goBackButton.setAttribute("type", "button");
+clearHighScoresButton.setAttribute("type", "button");
+
+submitButton.textContent = "Submit";
+goBackButton.textContent = "Go Back";
+clearHighScoresButton.textContent = "Clear High Scores";
+
 // creating variables for results page
 var labelEl = document.createElement("lable");
 var inputEl = document.createElement("input");
@@ -109,8 +126,8 @@ function showResults() {
     ulEl.remove();
     midContent.appendChild(labelEl);
     midContent.appendChild(inputEl);
-    startButton.textContent = "Submit";
-    midContent.appendChild(startButton);
+    // startButton.textContent = "Submit";
+    // midContent.appendChild(startButton);
 }
 
 startButton.addEventListener("click", function() {
