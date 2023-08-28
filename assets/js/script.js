@@ -17,6 +17,11 @@ choice1El.setAttribute("id", "choice1");
 choice2El.setAttribute("id", "choice2");
 choice3El.setAttribute("id", "choice3");
 
+choice0El.setAttribute("class", "highlight");
+choice1El.setAttribute("class", "highlight");
+choice2El.setAttribute("class", "highlight");
+choice3El.setAttribute("class", "highlight");
+
 // declaring variables so that way the eventListener can find this object
 var answer0 = choice0El;
 var answer1 = choice1El;
@@ -184,9 +189,8 @@ function showQuesAnsw() {
         }
 
         liEl.textContent = choices[i];
-        liEl.setAttribute("style", 
-            "cursor:pointer; text-align:left; display:block; background-color:#5d0aa2; color:white; border-radius:10px; padding:15px 32px; font-size:16px; margin:10px 10px");
-        liEl.setAttribute("class", "highlight");
+        // liEl.setAttribute("style", 
+        //     "cursor:pointer; text-align:left; display:block; background-color:#5d0aa2; color:white; border-radius:10px; padding:15px 32px; font-size:16px; margin:10px 10px");
         ulQuesEl.appendChild(liEl);
     }
 

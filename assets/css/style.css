@@ -35,7 +35,23 @@ button {
     border-radius: 10px;
 }
 
-button:hover, .highlight:hover {
+button:hover {
+    background-color: #bb80ea;
+}
+
+.highlight {
+    cursor:pointer; 
+    text-align:left; 
+    display:block; 
+    background-color:#5d0aa2; 
+    color:white; 
+    border-radius:10px; 
+    padding:15px 32px; 
+    font-size:16px; 
+    margin:10px 10px
+}
+
+.highlight:hover {
     background-color: #bb80ea;
 }
 
