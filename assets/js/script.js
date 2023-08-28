@@ -153,7 +153,6 @@ function showQuesAnsw() {
     //this code block will occur after the user has answered the final question
     if (questionCounter === 5) {
         stopTimer = true;
-        // botContent.textContent = "";
         showResults();
         return;
     }
@@ -238,6 +237,7 @@ function showHighScores() {
     submitButton.remove();
 
     botContent.textContent = "";
+    botContent.removeAttribute("style");
     botContent.appendChild(goBackButton);
     botContent.appendChild(clearHighScoresButton);
     viewHighScores = false;
