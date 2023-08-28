@@ -186,7 +186,7 @@ function showQuesAnsw() {
         liEl.textContent = choices[i];
         liEl.setAttribute("style", 
             "cursor:pointer; text-align:left; display:block; background-color:#5d0aa2; color:white; border-radius:10px; padding:15px 32px; font-size:16px; margin:10px 10px");
-        // liEl.setAttribute("id", "choice" + i);
+        liEl.setAttribute("class", "highlight");
         ulQuesEl.appendChild(liEl);
     }
 

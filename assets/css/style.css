@@ -35,4 +35,9 @@ button {
     border-radius: 10px;
 }
 
+button:hover, .highlight:hover {
+    background-color: #bb80ea;
+}
+
+
 
