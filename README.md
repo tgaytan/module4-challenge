@@ -14,17 +14,15 @@ N/A
 
 Here is a screenshot of the webpage in GitHub pages.
 
-To access the webpage, navigate to the following URL:
+![alt text](./assets/images/jsQuiz.png)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
-
-![alt text](assets/images/screenshot.png)
+To access the webpage, navigate to the following URL: https://tgaytan.github.io/module4-challenge/
 
 To start the quiz, hit he "Start Quiz!" button.  This will present you with the first question in the quiz.  When you select a choice, the next question will be displayed.  Depending on your answer, either "Correct" or "Incorrect" will be displayed at the bottom.
 
-The time remaining is shown in the top righ-hand corner.
+The time remaining is shown in the top right-hand corner.
 
-When all the questions are answered or the time has ran out, the results page.  Here you can record your score by inputting your initials and hitting the "Submit" button.
+When all the questions are answered or the time has ran out, the results page will be shown.  On the results page you can record your score by inputting your initials and hitting the "Submit" button.
 
 Thish will take you to the high scores page, where all the scores are shown.  To restart the quiz, hit the "Go Back" button.  If desired, you can clear all the scores using the "Clear High Scores" button.
 
@@ -38,11 +36,14 @@ N/A
 
 N/A
 
-## Features
-
-If your project has a lot of features, list them here.
-
-
 ## Tests
 
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+This is the answer key to the questions:
+
+1.  alerts
+2.  parenthesis
+3.  all of the above
+4.  quotes
+5.  console.log
+
+You can select the wrong answers to confirm time is deducted from the timer.  You can also let the timer run out of time and you will be taken to the results page.
